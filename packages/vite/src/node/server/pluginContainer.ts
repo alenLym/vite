@@ -103,6 +103,11 @@ const debugPluginTransform = createDebugger('vite:plugin-transform', {
 
 export const ERR_CLOSED_SERVER = 'ERR_CLOSED_SERVER'
 
+/**
+ * 引发一个错误，指示服务器正在重新启动或关闭，并且请求已过时。
+ * @throws {错误} 服务器关闭错误，并显示特定错误代码。
+ * @returns {never} 此函数从不返回值，因为它总是会引发错误。
+ */
 export function throwClosedServerError(): never {
   const err: any = new Error(
     'The server is being restarted or closed. Request is outdated',

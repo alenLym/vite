@@ -92,6 +92,8 @@ export type ResolvedUrl = [
   meta: object | null | undefined,
 ]
 
+/* The `ModuleGraph` class manages a graph of modules, their dependencies, and provides methods for
+resolving, updating, and invalidating modules in a TypeScript project. */
 export class ModuleGraph {
   urlToModuleMap = new Map<string, ModuleNode>()
   idToModuleMap = new Map<string, ModuleNode>()
@@ -253,12 +255,11 @@ export class ModuleGraph {
   }
 
   /**
-   * Update the module graph based on a module's updated imports information
-   * If there are dependencies that no longer have any importers, they are
-   * returned as a Set.
+   * 根据模块更新的导入信息更新模块图
+   * 如果存在不再具有任何导入程序的依赖项，则它们将作为 Set 返回。
    *
-   * @param staticImportedUrls Subset of `importedModules` where they're statically imported in code.
-   *   This is only used for soft invalidations so `undefined` is fine but may cause more runtime processing.
+   * @param staticImportedUrls 的 'importedModules' 子集，它们在代码中静态导入。
+   *   这仅用于软失效，因此 'undefined' 很好，但可能会导致更多的运行时处理。
    */
   async updateModuleInfo(
     mod: ModuleNode,
